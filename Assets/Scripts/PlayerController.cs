@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public SpriteRenderer renderer;
+    public SpriteRenderer spriteRenderer;
     public Rigidbody2D rigidBody;
     public Animator animator;
     public float runBoost = 500f;
@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour
 
         if (horizontalMove < 0)
         {
-            renderer.flipX = true;
+            spriteRenderer.flipX = true;
         }
         else if (horizontalMove > 0)
         {
-            renderer.flipX = false;
+            spriteRenderer.flipX = false;
         }
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            animator.SetBool("IsJumping", true);
         }
     }
 
@@ -43,6 +44,10 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(new Vector2(0, jumpBoost));
             jump = false;
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetBool("IsJumping", false);
     }
 }
