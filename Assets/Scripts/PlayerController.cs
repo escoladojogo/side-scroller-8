@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && animator.GetBool("IsJumping") == false)
         {
             jump = true;
             animator.SetBool("IsJumping", true);
@@ -49,5 +49,13 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("IsJumping", false);
+
+        if (collision.name == "Frog")
+        {
+            jump = true;
+            animator.SetBool("IsJumping", true);
+
+            collision.gameObject.SendMessage("JumpedOnYou");
+        }
     }
 }

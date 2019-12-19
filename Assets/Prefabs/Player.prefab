@@ -237,7 +237,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &8993886461111739998
 CapsuleCollider2D:
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd83ee20b5f46c18f00ed04e93f2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 8993886461111739997}
   rigidBody: {fileID: 8993886461111739999}
   animator: {fileID: 8993886461111740000}
   runBoost: 500
