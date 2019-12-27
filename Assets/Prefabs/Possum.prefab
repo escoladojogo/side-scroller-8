@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5972541764606378817}
   - component: {fileID: 5972541764606378819}
   - component: {fileID: 5972541764606378816}
+  - component: {fileID: 2023815301}
+  - component: {fileID: 2023815302}
   m_Layer: 0
   m_Name: Possum
   m_TagString: Enemy
@@ -140,3 +142,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.13}
   m_Size: {x: 2.16, y: 1.37}
   m_Direction: 1
+--- !u!114 &2023815301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972541764606378818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cd40421301e4f8796735bc70dc6998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 7779589646882166640, guid: 002e2fee5246848e89d9083fae8ff181,
+    type: 3}
+--- !u!114 &2023815302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5972541764606378818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec264161f5057477f9d91b081f595d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDist: 5
+  rigidBody: {fileID: 5972541764606378817}
+  spriteRenderer: {fileID: 5972541764606378830}
+  speedX: 400
