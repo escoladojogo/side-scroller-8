@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("IsJumping", false);
 
-        if (collision.name == "Frog")
+        if (collision.gameObject.tag == "Enemy")
         {
             jump = true;
             animator.SetBool("IsJumping", true);

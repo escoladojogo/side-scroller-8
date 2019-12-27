@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class DeathController : MonoBehaviour
 {
+    public GameObject explosion;
+
+    void JumpedOnYou()
+    {
+        Instantiate(explosion, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+
     void SelfDestroy()
     {
         Destroy(this.gameObject);
