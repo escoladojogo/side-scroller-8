@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     float horizontalMove;
     bool jump;
+    int jumpCount;
+
 
     // Update is called once per frame
     void Update()
@@ -29,10 +31,11 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump") && animator.GetBool("IsJumping") == false)
+        if (Input.GetButtonDown("Jump") && (jumpCount < 2))
         {
             jump = true;
             animator.SetBool("IsJumping", true);
+            jumpCount++;
         }
     }
 
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("IsJumping", false);
+        jumpCount = 0;
 
         if (collision.gameObject.tag == "Enemy")
         {
