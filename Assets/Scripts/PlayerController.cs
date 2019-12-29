@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     float horizontalMove;
     bool jump;
     int jumpCount;
-
+    float verticalMove;
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
+        horizontalMove = Input.GetAxisRaw("Horizontal");
 
         if (horizontalMove < 0)
         {
@@ -31,12 +31,25 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
+        verticalMove = Input.GetAxisRaw("Vertical");
+
+        if (verticalMove < 0)
+        {
+            animator.SetBool("IsCrouching", true);
+        }
+        else
+        {
+            animator.SetBool("IsCrouching", false);
+        }
+
         if (Input.GetButtonDown("Jump") && (jumpCount < 2))
         {
             jump = true;
             animator.SetBool("IsJumping", true);
             jumpCount++;
         }
+
+
     }
 
     private void FixedUpdate()
