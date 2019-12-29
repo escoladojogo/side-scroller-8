@@ -9,11 +9,18 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float runBoost = 500f;
     public float jumpBoost = 400f;
+    public CapsuleCollider2D capsuleCollider;
 
     float horizontalMove;
     bool jump;
     int jumpCount;
     float verticalMove;
+    float startColliderOffsetY;
+
+    private void Start()
+    {
+        startColliderOffsetY = capsuleCollider.offset.y;
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,10 +43,12 @@ public class PlayerController : MonoBehaviour
         if (verticalMove < 0)
         {
             animator.SetBool("IsCrouching", true);
+            capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, startColliderOffsetY + 0.3f);
         }
         else
         {
             animator.SetBool("IsCrouching", false);
+            capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, startColliderOffsetY);
         }
 
         if (Input.GetButtonDown("Jump") && (jumpCount < 2))
@@ -48,8 +57,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", true);
             jumpCount++;
         }
-
-
     }
 
     private void FixedUpdate()
