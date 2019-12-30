@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     int jumpCount;
     float verticalMove;
     float startColliderOffsetY;
+    int climbCounter;
+    bool climb;
 
     private void Start()
     {
@@ -49,6 +51,15 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsCrouching", false);
             capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, startColliderOffsetY);
+
+            if (verticalMove > 0 && climbCounter > 0)
+            {
+                climb = true;
+            }
+            else
+            {
+                climb = false;
+            }
         }
 
         if (Input.GetButtonDown("Jump") && (jumpCount < 2))
@@ -61,12 +72,28 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.velocity = new Vector3(horizontalMove * Time.fixedDeltaTime * runBoost, rigidBody.velocity.y, 0);
+        float vy = 0;
+
+        if (climb)
+        {
+            vy = verticalMove * Time.fixedDeltaTime * 500f;
+        }
+        else
+        {
+            vy = rigidBody.velocity.y;
+        }
+
+
+        rigidBody.velocity = new Vector3(horizontalMove * Time.fixedDeltaTime * runBoost, vy, 0);
+
+
         if (jump)
         {
             rigidBody.AddForce(new Vector2(0, jumpBoost));
             jump = false;
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -80,6 +107,19 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", true);
 
             collision.gameObject.SendMessage("JumpedOnYou");
+        }
+
+        if (collision.gameObject.tag == "Stairs")
+        {
+            climbCounter++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Stairs")
+        {
+            climbCounter--;
         }
     }
 }
