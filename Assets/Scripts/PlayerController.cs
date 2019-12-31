@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     public float runBoost = 500f;
     public float jumpBoost = 400f;
     public CapsuleCollider2D capsuleCollider;
+    public GameObject groundTrigger;
 
+    Vector3 startPosition;
     float horizontalMove;
     bool jump;
     int jumpCount;
@@ -18,9 +20,11 @@ public class PlayerController : MonoBehaviour
     float startColliderOffsetY;
     int climbCounter;
     bool climb;
+    bool die;
 
     private void Start()
     {
+        startPosition = this.gameObject.transform.position;
         startColliderOffsetY = capsuleCollider.offset.y;
     }
 
@@ -94,8 +98,6 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(new Vector2(0, jumpBoost));
             jump = false;
         }
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -123,5 +125,30 @@ public class PlayerController : MonoBehaviour
         {
             climbCounter--;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && die == false && jump == false)
+        {
+            die = true;
+            StartCoroutine(MakeDeathAnimation());
+        }
+    }
+
+    private IEnumerator MakeDeathAnimation()
+    {
+        rigidBody.AddForce(new Vector2(0, jumpBoost));
+        capsuleCollider.enabled = false;
+        groundTrigger.SetActive(false);
+        animator.SetBool("IsDying", true);
+
+        yield return new WaitForSeconds(1.0f);
+
+        animator.SetBool("IsDying", false);
+        capsuleCollider.enabled = true;
+        groundTrigger.SetActive(true);
+        this.gameObject.transform.position = startPosition;
+        die = false;
     }
 }

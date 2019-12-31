@@ -44,9 +44,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.24}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.27
 --- !u!1 &8993886460843422461
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   runBoost: 500
   jumpBoost: 600
   capsuleCollider: {fileID: 8993886461111739998}
+  groundTrigger: {fileID: 2934726729848949160}
 --- !u!95 &8993886461111740000
 Animator:
   serializedVersion: 3
@@ -308,7 +309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8993886462105413691
 Transform:
   m_ObjectHideFlags: 0
