@@ -131,13 +131,21 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && die == false && jump == false)
         {
-            die = true;
-            StartCoroutine(MakeDeathAnimation());
+            StartCoroutine(MakePlayerDie());
         }
     }
 
-    private IEnumerator MakeDeathAnimation()
+    void LoseALife()
     {
+        if (die == false)
+        {
+            StartCoroutine(MakePlayerDie());
+        }
+    }
+
+    private IEnumerator MakePlayerDie()
+    {
+        die = true;
         rigidBody.AddForce(new Vector2(0, jumpBoost));
         capsuleCollider.enabled = false;
         groundTrigger.SetActive(false);
