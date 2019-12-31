@@ -39,6 +39,7 @@ public class EagleController : MonoBehaviour
     private IEnumerator Attack()
     {
         attacking = true;
+        diveDepth = player.transform.position.y;
 
         while (this.gameObject.transform.position.y > diveDepth)
         {
