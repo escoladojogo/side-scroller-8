@@ -55,10 +55,12 @@ public class PlayerController : MonoBehaviour
             if (verticalMove > 0 && climbCounter > 0)
             {
                 climb = true;
+                animator.SetBool("IsClimbing", true);
             }
             else
             {
                 climb = false;
+                animator.SetBool("IsClimbing", false);
             }
         }
 
