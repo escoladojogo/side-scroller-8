@@ -205,6 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006c33179ff7b478994c702141ae7717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 3339779719158456322}
-  endPosition: {fileID: 3339779719022915101}
-  timeBetweenPositions: 0
+  startMarker: {fileID: 3339779719158456322}
+  endMarker: {fileID: 3339779719022915101}
+  timeBetweenPositions: 1

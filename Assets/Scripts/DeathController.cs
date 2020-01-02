@@ -6,7 +6,7 @@ public class DeathController : MonoBehaviour
 {
     public GameObject explosion;
 
-    void JumpedOnYou()
+    void Die()
     {
         Instantiate(explosion, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);

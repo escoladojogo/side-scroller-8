@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Stairs
   - Spikes
+  - Cherry
   layers:
   - Default
   - TransparentFX

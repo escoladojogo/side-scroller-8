@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jumpBoost = 400f;
     public CapsuleCollider2D capsuleCollider;
     public GameObject groundTrigger;
+    public float invincibilityTime = 5.0f;
 
     Vector3 startPosition;
     float horizontalMove;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     int climbCounter;
     bool climb;
     bool die;
+    bool invincible;
+    float invincibilityTimeLeft;
 
     private void Start()
     {
@@ -98,6 +101,17 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(new Vector2(0, jumpBoost));
             jump = false;
         }
+
+        if (invincible)
+        {
+            invincibilityTimeLeft -= Time.fixedDeltaTime;
+
+            if (invincibilityTimeLeft <= 0)
+            {
+                invincible = false;
+                spriteRenderer.color = Color.white;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -110,7 +124,7 @@ public class PlayerController : MonoBehaviour
             jump = true;
             animator.SetBool("IsJumping", true);
 
-            collision.gameObject.SendMessage("JumpedOnYou");
+            collision.gameObject.SendMessage("Die");
         }
 
         if (collision.gameObject.tag == "Stairs")
@@ -129,15 +143,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && die == false && jump == false)
+        if (collision.gameObject.tag == "Enemy" && die == false && jump == false && invincible == false)
         {
             StartCoroutine(MakePlayerDie());
+        }
+
+        if (collision.gameObject.tag == "Cherry")
+        {
+            collision.gameObject.SendMessage("Die");
+            invincible = true;
+            invincibilityTimeLeft = invincibilityTime;
+            spriteRenderer.color = new Color(1.0f, 0, 0, 1.0f);
         }
     }
 
     void LoseALife()
     {
-        if (die == false)
+        if (die == false && invincible == false)
         {
             StartCoroutine(MakePlayerDie());
         }
