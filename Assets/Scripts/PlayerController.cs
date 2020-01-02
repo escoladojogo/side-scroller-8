@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     bool die;
     bool invincible;
     float invincibilityTimeLeft;
+    Collider2D[] overlapColliders = new Collider2D[3];
 
     private void Start()
     {
@@ -59,10 +60,25 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsCrouching", false);
             capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, startColliderOffsetY);
 
-            if (verticalMove > 0 && canClimb)
+            if (verticalMove > 0)
             {
-                climb = true;
-                animator.SetBool("IsClimbing", true);
+                if (canClimb)
+                {
+                    climb = true;
+                    animator.SetBool("IsClimbing", true);
+                }
+                else
+                {
+                    capsuleCollider.OverlapCollider(new ContactFilter2D().NoFilter(), overlapColliders);
+
+                    foreach (Collider2D col in overlapColliders)
+                    {
+                        if (col != null && col.tag == "Lever")
+                        {
+                            col.SendMessage("Pull");
+                        }
+                    }
+                }
             }
             else
             {
@@ -130,6 +146,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Stairs")
         {
             canClimb = true;
+            Debug.Log("can climb");
         }
     }
 

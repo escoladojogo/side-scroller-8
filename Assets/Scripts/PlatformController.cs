@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
+    public Rigidbody2D rigidbody;
     public GameObject startMarker;
     public GameObject endMarker;
     public float timeBetweenPositions = 1.0f;
+    public bool active = true;
 
     Vector3 startPosition;
     Vector3 endPosition;
@@ -21,6 +23,9 @@ public class PlatformController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!active)
+            return;
+
         accumTime += Time.fixedDeltaTime;
 
         if (accumTime > timeBetweenPositions)
@@ -30,11 +35,11 @@ public class PlatformController : MonoBehaviour
 
         if (increasing)
         {
-            transform.position = Vector3.Lerp(startPosition, endPosition, accumTime / timeBetweenPositions);
+            rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, accumTime / timeBetweenPositions));
         }
         else
         {
-            transform.position = Vector3.Lerp(startPosition, endPosition, 1.0f - (accumTime / timeBetweenPositions));
+            rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, 1.0f - (accumTime / timeBetweenPositions)));
         }
 
         if (accumTime >= timeBetweenPositions)

@@ -8,6 +8,7 @@ TagManager:
   - Stairs
   - Spikes
   - Cherry
+  - Lever
   layers:
   - Default
   - TransparentFX
