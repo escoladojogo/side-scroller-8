@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     int jumpCount;
     float verticalMove;
     float startColliderOffsetY;
-    int climbCounter;
+    bool canClimb;
     bool climb;
     bool die;
     bool invincible;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsCrouching", false);
             capsuleCollider.offset = new Vector2(capsuleCollider.offset.x, startColliderOffsetY);
 
-            if (verticalMove > 0 && climbCounter > 0)
+            if (verticalMove > 0 && canClimb)
             {
                 climb = true;
                 animator.SetBool("IsClimbing", true);
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Stairs")
         {
-            climbCounter++;
+            canClimb = true;
         }
     }
 
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Stairs")
         {
-            climbCounter--;
+            canClimb = false;
         }
     }
 
