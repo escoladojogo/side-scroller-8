@@ -4,9 +4,27 @@ using UnityEngine;
 
 public class FrogController : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
-    {
+    public float wait = 5.0f;
+    public Rigidbody2D rigidbody;
+    public Animator animator;
 
+    private void Start()
+    {
+        StartCoroutine(WaitAndJump());
+    }
+
+    IEnumerator WaitAndJump()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(wait);
+            animator.SetBool("IsJumping", true);
+            rigidbody.AddForce(new Vector2(0, 400f));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetBool("IsJumping", false);
     }
 }
