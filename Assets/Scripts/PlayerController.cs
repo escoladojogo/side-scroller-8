@@ -146,7 +146,6 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Stairs")
         {
             canClimb = true;
-            Debug.Log("can climb");
         }
     }
 

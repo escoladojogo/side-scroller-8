@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D rigidBody;
     public GameObject startMarker;
     public GameObject endMarker;
     public float timeBetweenPositions = 1.0f;
@@ -35,11 +35,11 @@ public class PlatformController : MonoBehaviour
 
         if (increasing)
         {
-            rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, accumTime / timeBetweenPositions));
+            rigidBody.MovePosition(Vector3.Lerp(startPosition, endPosition, accumTime / timeBetweenPositions));
         }
         else
         {
-            rigidbody.MovePosition(Vector3.Lerp(startPosition, endPosition, 1.0f - (accumTime / timeBetweenPositions)));
+            rigidBody.MovePosition(Vector3.Lerp(startPosition, endPosition, 1.0f - (accumTime / timeBetweenPositions)));
         }
 
         if (accumTime >= timeBetweenPositions)
