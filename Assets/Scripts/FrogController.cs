@@ -23,7 +23,7 @@ public class FrogController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("IsJumping", false);
     }

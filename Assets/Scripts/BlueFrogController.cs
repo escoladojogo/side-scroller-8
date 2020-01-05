@@ -7,6 +7,41 @@ public class BlueFrogController : FrogController
     public int lives = 3;
     public GameObject explosion;
     public SpriteRenderer spriteRenderer;
+    public float xJumpForce = 100;
+
+    EnemyTools enemyTools = new EnemyTools(5f);
+
+    protected override void Start()
+    {
+        StartCoroutine(WaitAndJumpOnPlayer());
+    }
+
+    IEnumerator WaitAndJumpOnPlayer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waitToJump);
+            animator.SetBool("IsJumping", true);
+
+            float xForce = 0;
+
+            if (enemyTools.IsPlayerClose(transform.position.x))
+            {
+                if (enemyTools.IsPlayerLeft(transform.position.x))
+                {
+                    xForce = -xJumpForce;
+                    spriteRenderer.flipX = false;
+                }
+                else
+                {
+                    xForce = xJumpForce;
+                    spriteRenderer.flipX = true;
+                }
+            }
+
+            rigidBody.AddForce(new Vector2(xForce, 400f));
+        }
+    }
 
     void Die()
     {

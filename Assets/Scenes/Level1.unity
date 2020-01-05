@@ -4640,6 +4640,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueFrog
       objectReference: {fileID: 0}
+    - target: {fileID: 3182415067068109194, guid: 29bea1296bcb648749c8873c7508e193,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29bea1296bcb648749c8873c7508e193, type: 3}
 --- !u!1001 &3339779718668473126
