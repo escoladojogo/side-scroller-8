@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public CapsuleCollider2D capsuleCollider;
     public GameObject groundTrigger;
     public float invincibilityTime = 5.0f;
+    public Text livesCountText;
+    public int livesCount = 3;
 
     Vector3 startPosition;
     float horizontalMove;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         startPosition = this.gameObject.transform.position;
         startColliderOffsetY = capsuleCollider.offset.y;
+        livesCountText.text = livesCount.ToString();
     }
 
     // Update is called once per frame
@@ -191,10 +195,16 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        animator.SetBool("IsDying", false);
-        capsuleCollider.enabled = true;
-        groundTrigger.SetActive(true);
-        this.gameObject.transform.position = startPosition;
-        die = false;
+        if (livesCount > 0)
+        {
+            livesCount--;
+            livesCountText.text = livesCount.ToString();
+
+            animator.SetBool("IsDying", false);
+            capsuleCollider.enabled = true;
+            groundTrigger.SetActive(true);
+            this.gameObject.transform.position = startPosition;
+            die = false;
+        }
     }
 }

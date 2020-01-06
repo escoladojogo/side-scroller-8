@@ -275,6 +275,8 @@ MonoBehaviour:
   capsuleCollider: {fileID: 8993886461111739998}
   groundTrigger: {fileID: 2934726729848949160}
   invincibilityTime: 5
+  livesCountText: {fileID: 0}
+  liveCount: 0
 --- !u!95 &8993886461111740000
 Animator:
   serializedVersion: 3
