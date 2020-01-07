@@ -867,6 +867,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &492667070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 492667070, guid: de739e07bb74540a2828f3f35d8fea2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1870605763685509658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508441924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4680,6 +4692,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 23496725}
+    - target: {fileID: 1870605762256938732, guid: de739e07bb74540a2828f3f35d8fea2f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1816092989
+      objectReference: {fileID: 0}
     - target: {fileID: 1870605762256938733, guid: de739e07bb74540a2828f3f35d8fea2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5644,5 +5661,15 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 783804481}
+    - target: {fileID: 8993886461111740001, guid: 815269ccbaafc4995bff9a3861e0f318,
+        type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 492667070}
+    - target: {fileID: 8993886461111740001, guid: 815269ccbaafc4995bff9a3861e0f318,
+        type: 3}
+      propertyPath: levelTime
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 815269ccbaafc4995bff9a3861e0f318, type: 3}

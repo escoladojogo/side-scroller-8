@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour
     public Text livesCountText;
     public int livesCount = 3;
     public Text scoreText;
+    public Text timeText;
+    public float levelTime = 60.0f;
 
     int score;
+    float timeLeft;
     Vector3 startPosition;
     float horizontalMove;
     bool jump;
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         startPosition = this.gameObject.transform.position;
         startColliderOffsetY = capsuleCollider.offset.y;
         livesCountText.text = livesCount.ToString();
+        timeLeft = levelTime;
     }
 
     // Update is called once per frame
@@ -98,6 +102,24 @@ public class PlayerController : MonoBehaviour
             jump = true;
             animator.SetBool("IsJumping", true);
             jumpCount++;
+        }
+
+        timeLeft -= Time.deltaTime;
+        int timeLeftInt = (int)timeLeft;
+        timeText.text = timeLeftInt.ToString();
+
+        if (timeLeft <= 0)
+        {
+            timeLeft = levelTime;
+
+            if (livesCount > 0)
+            {
+                LoseALife();
+            }
+            else
+            {
+                Debug.Log("Lost the game");
+            }
         }
     }
 
