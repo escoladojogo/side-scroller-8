@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 7779589646882166640, guid: 002e2fee5246848e89d9083fae8ff181,
     type: 3}
+  score: 10
 --- !u!50 &4290655627625286555
 Rigidbody2D:
   serializedVersion: 4

@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     public float invincibilityTime = 5.0f;
     public Text livesCountText;
     public int livesCount = 3;
+    public Text scoreText;
 
+    int score;
     Vector3 startPosition;
     float horizontalMove;
     bool jump;
@@ -206,5 +208,11 @@ public class PlayerController : MonoBehaviour
             this.gameObject.transform.position = startPosition;
             die = false;
         }
+    }
+
+    void AddScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = score.ToString();
     }
 }

@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9bed7aacf8b48c891bf32c2bd8cb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 5
-  rigidbody: {fileID: 7791194306694286724}
+  waitToJump: 5
+  rigidBody: {fileID: 7791194306694286724}
   animator: {fileID: 750277775}
 --- !u!114 &2788550077295254129
 MonoBehaviour:
@@ -229,3 +229,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 7779589646882166640, guid: 002e2fee5246848e89d9083fae8ff181,
     type: 3}
+  score: 5

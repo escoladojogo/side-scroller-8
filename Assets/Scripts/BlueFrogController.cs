@@ -8,11 +8,14 @@ public class BlueFrogController : FrogController
     public GameObject explosion;
     public SpriteRenderer spriteRenderer;
     public float xJumpForce = 100;
+    public int score;
 
     EnemyTools enemyTools = new EnemyTools(5f);
+    GameObject player;
 
     protected override void Start()
     {
+        player = GameObject.FindWithTag("Player");
         StartCoroutine(WaitAndJumpOnPlayer());
     }
 
@@ -53,6 +56,7 @@ public class BlueFrogController : FrogController
             return;
         }
 
+        player.SendMessage("AddScore", score);
         Instantiate(explosion, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
