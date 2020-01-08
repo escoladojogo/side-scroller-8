@@ -10,6 +10,7 @@ TagManager:
   - Cherry
   - Lever
   - GroundTrigger
+  - EndLevelTrigger
   layers:
   - Default
   - TransparentFX

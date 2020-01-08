@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
     public Text timeText;
     public float levelTime = 60.0f;
+    public GameObject gameUI;
+    public GameObject inputNameUI;
+    public LeaderboardController leaderboardUI;
+    public Text leaderboardName;
 
     int score;
     float timeLeft;
@@ -170,10 +174,22 @@ public class PlayerController : MonoBehaviour
 
             collision.gameObject.SendMessage("Die");
         }
-
-        if (collision.gameObject.tag == "Stairs")
+        else if (collision.gameObject.tag == "Stairs")
         {
             canClimb = true;
+        }
+        else if (collision.gameObject.tag == "EndLevelTrigger")
+        {
+            if (leaderboardUI.IsHighScore(score))
+            {
+                gameUI.SetActive(false);
+                inputNameUI.SetActive(true);
+            }
+            else
+            {
+                gameUI.SetActive(false);
+                leaderboardUI.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -237,4 +253,23 @@ public class PlayerController : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = score.ToString();
     }
+
+    public void LeaderboardNameSet()
+    {
+        leaderboardUI.AddScore(leaderboardName.text, score);
+        inputNameUI.SetActive(false);
+        leaderboardUI.gameObject.SetActive(true);
+    }
+
+    void GoToNextStage()
+    {
+        score = 0;
+        scoreText.text = score.ToString();
+        timeLeft = levelTime;
+        timeText.text = timeLeft.ToString();
+        leaderboardUI.gameObject.SetActive(false);
+        gameUI.SetActive(true);
+        this.gameObject.transform.position = startPosition;
+    }
+
 }

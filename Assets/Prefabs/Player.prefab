@@ -278,6 +278,11 @@ MonoBehaviour:
   livesCountText: {fileID: 0}
   livesCount: 3
   scoreText: {fileID: 0}
+  timeText: {fileID: 0}
+  levelTime: 60
+  gameUI: {fileID: 0}
+  inputNameUI: {fileID: 0}
+  leaderboardUI: {fileID: 0}
 --- !u!95 &8993886461111740000
 Animator:
   serializedVersion: 3
