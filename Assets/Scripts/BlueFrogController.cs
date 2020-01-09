@@ -10,7 +10,7 @@ public class BlueFrogController : FrogController
     public float xJumpForce = 100;
     public int score;
 
-    EnemyTools enemyTools = new EnemyTools(5f);
+    EnemyTools enemyTools = new EnemyTools(10f);
     GameObject player;
 
     protected override void Start()
@@ -46,7 +46,7 @@ public class BlueFrogController : FrogController
         }
     }
 
-    void Die()
+    protected virtual void Die()
     {
         lives--;
         StartCoroutine(ShowDamage());

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -263,13 +264,6 @@ public class PlayerController : MonoBehaviour
 
     void GoToNextStage()
     {
-        score = 0;
-        scoreText.text = score.ToString();
-        timeLeft = levelTime;
-        timeText.text = timeLeft.ToString();
-        leaderboardUI.gameObject.SetActive(false);
-        gameUI.SetActive(true);
-        this.gameObject.transform.position = startPosition;
+        SceneManager.LoadScene("Level2");
     }
-
 }

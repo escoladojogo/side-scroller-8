@@ -11,6 +11,7 @@ TagManager:
   - Lever
   - GroundTrigger
   - EndLevelTrigger
+  - Fireball
   layers:
   - Default
   - TransparentFX

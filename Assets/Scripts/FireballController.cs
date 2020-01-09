@@ -22,7 +22,7 @@ public class FireballController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "GroundTrigger")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "GroundTrigger" || collision.gameObject.tag == "Fireball")
         {
             return;
         }
@@ -31,6 +31,8 @@ public class FireballController : MonoBehaviour
         {
             collision.gameObject.SendMessage("LoseALife");
         }
+
+        Debug.Log("going to blow up" + collision.gameObject.name);
 
         SelfDestroy();
     }
