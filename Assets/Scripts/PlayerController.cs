@@ -181,16 +181,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.gameObject.tag == "EndLevelTrigger")
         {
-            if (leaderboardUI.IsHighScore(score))
-            {
-                gameUI.SetActive(false);
-                inputNameUI.SetActive(true);
-            }
-            else
-            {
-                gameUI.SetActive(false);
-                leaderboardUI.gameObject.SetActive(true);
-            }
+            EndLevel();
         }
     }
 
@@ -257,13 +248,36 @@ public class PlayerController : MonoBehaviour
 
     public void LeaderboardNameSet()
     {
-        leaderboardUI.AddScore(leaderboardName.text, score);
+        leaderboardUI.AddScore(SceneManager.GetActiveScene().name, leaderboardName.text, score);
         inputNameUI.SetActive(false);
         leaderboardUI.gameObject.SetActive(true);
     }
 
+    void EndLevel()
+    {
+        if (leaderboardUI.IsHighScore(SceneManager.GetActiveScene().name, score))
+        {
+            gameUI.SetActive(false);
+            inputNameUI.SetActive(true);
+        }
+        else
+        {
+            gameUI.SetActive(false);
+            leaderboardUI.gameObject.SetActive(true);
+        }
+    }
+
     void GoToNextStage()
     {
-        SceneManager.LoadScene("Level2");
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "Level1")
+        {
+            SceneManager.LoadScene("Level2");
+        }
+        else
+        {
+            Debug.Log("Fim de jogo!");
+        }
     }
 }

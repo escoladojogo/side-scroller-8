@@ -22,27 +22,27 @@ public class LeaderboardController : MonoBehaviour
 
     IEnumerator WaitAndGoNextStage()
     {
-        Debug.Log("activating leaderboard");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         yield return new WaitForSeconds(3.0f);
         player.SendMessage("GoToNextStage");
     }
 
-    void InitializeScores()
+    void InitializeScores(string level)
     {
         scores = new int[3];
 
         for (int i = 0; i < 3; i++)
         {
-            scores[i] = -1;
+            scores[i] = PlayerPrefs.GetInt(level + "score" + i, -1);
+            names[i] = PlayerPrefs.GetString(level + "name" + i, null);
         }
     }
 
-    public bool IsHighScore(int score)
+    public bool IsHighScore(string level, int score)
     {
         if (scores == null)
         {
-            InitializeScores();
+            InitializeScores(level);
             return true;
         }
 
@@ -57,7 +57,7 @@ public class LeaderboardController : MonoBehaviour
         return false;
     }
 
-    public void AddScore(string name, int score)
+    public void AddScore(string level, string name, int score)
     {
         int newScorePos = -1;
 
@@ -99,5 +99,21 @@ public class LeaderboardController : MonoBehaviour
             name3.text = names[2];
             score3.text = scores[2].ToString();
         }
+
+        SaveLeaderboard(level);
+    }
+
+    void SaveLeaderboard(string level)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (scores[i] != -1)
+            {
+                PlayerPrefs.SetInt(level + "score" + i, scores[i]);
+                PlayerPrefs.SetString(level + "name" + i, names[i]);
+            }
+        }
+
+        PlayerPrefs.Save();
     }
 }

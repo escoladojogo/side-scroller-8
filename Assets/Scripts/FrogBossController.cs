@@ -40,6 +40,8 @@ public class FrogBossController : BlueFrogController
                 GameObject clone = Instantiate(diamond, this.transform.position, Quaternion.identity);
                 clone.SendMessage("JumpRandomly");
             }
+
+            player.SendMessage("EndLevel");
         }
     }
 }

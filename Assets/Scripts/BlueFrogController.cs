@@ -11,7 +11,7 @@ public class BlueFrogController : FrogController
     public int score;
 
     EnemyTools enemyTools = new EnemyTools(10f);
-    GameObject player;
+    protected GameObject player;
 
     protected override void Start()
     {
