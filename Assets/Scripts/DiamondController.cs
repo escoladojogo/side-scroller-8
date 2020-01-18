@@ -6,7 +6,7 @@ public class DiamondController : MonoBehaviour
 {
     public int score = 10;
     public SpriteRenderer spriteRenderer;
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D rigidBody;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,6 +19,6 @@ public class DiamondController : MonoBehaviour
 
     void JumpRandomly()
     {
-        rigidbody.AddForce(new Vector2(((Random.value - 0.5f) * 200), 400f));
+        rigidBody.AddForce(new Vector2(((Random.value - 0.5f) * 200), 400f));
     }
 }

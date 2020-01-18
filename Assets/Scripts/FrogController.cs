@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FrogController : MonoBehaviour
 {
+    public float jumpForce = 400f;
     public float waitToJump = 5.0f;
     public Rigidbody2D rigidBody;
     public Animator animator;
@@ -19,7 +20,7 @@ public class FrogController : MonoBehaviour
         {
             yield return new WaitForSeconds(waitToJump);
             animator.SetBool("IsJumping", true);
-            rigidBody.AddForce(new Vector2(0, 400f));
+            rigidBody.AddForce(new Vector2(0, jumpForce));
         }
     }
 

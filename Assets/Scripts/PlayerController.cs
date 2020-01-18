@@ -255,6 +255,9 @@ public class PlayerController : MonoBehaviour
 
     void EndLevel()
     {
+        if (!gameUI.activeSelf)
+            return;
+
         if (leaderboardUI.IsHighScore(SceneManager.GetActiveScene().name, score))
         {
             gameUI.SetActive(false);
