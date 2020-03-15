@@ -4493,6 +4493,7 @@ GameObject:
   - component: {fileID: 1491618251}
   - component: {fileID: 1491618254}
   - component: {fileID: 1491618253}
+  - component: {fileID: 1491618255}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -4610,6 +4611,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1491618255
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491618250}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 32b42b7cd792a457bad946576112ba52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1608654170 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1330980810045914069, guid: de739e07bb74540a2828f3f35d8fea2f,
