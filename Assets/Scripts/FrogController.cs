@@ -5,6 +5,8 @@ using UnityEngine;
 public class FrogController : MonoBehaviour
 {
     public Rigidbody2D frogBody;
+    public Animator animator;
+    public float waitToJump = 4.0f;
 
     float secondsPassed = 0;
 
@@ -17,12 +19,18 @@ public class FrogController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secondsPassed += Time.deltaTime;
+        secondsPassed = secondsPassed + Time.deltaTime;
 
-        if (secondsPassed >= 2.0f)
+        if (secondsPassed >= waitToJump)
         {
+            animator.SetBool("IsJumping", true);
             frogBody.AddForce(new Vector2(0, 400));
             secondsPassed = 0;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        animator.SetBool("IsJumping", false);
     }
 }
