@@ -4489,6 +4489,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frog
       objectReference: {fileID: 0}
+    - target: {fileID: 1458176649371889578, guid: ec2099119340c41269864781462abba9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1458176649371889580, guid: ec2099119340c41269864781462abba9,
         type: 3}
       propertyPath: m_LocalPosition.x

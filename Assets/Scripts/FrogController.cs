@@ -21,8 +21,12 @@ public class FrogController : MonoBehaviour
     {
         secondsPassed = secondsPassed + Time.deltaTime;
 
+        Debug.Log("secondsPassed:" + secondsPassed + " waitToJump:" + waitToJump);
+
         if (secondsPassed >= waitToJump)
         {
+            Debug.Log("Hora de pular!");
+
             animator.SetBool("IsJumping", true);
             frogBody.AddForce(new Vector2(0, 400));
             secondsPassed = 0;
